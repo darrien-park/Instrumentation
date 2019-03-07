@@ -1,8 +1,6 @@
 package com.company;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
-import java.io.File;
-import java.io.PrintStream;
 
 class Instrumentation {
     //Singleton Design Pattern--------------------------------------------------------------------
@@ -24,6 +22,7 @@ class Instrumentation {
     boolean isActivated = false;
     int spacing = 0;
     Stack startTimes = new Stack();
+    ArrayList<String> output = new ArrayList<String>();
 
     //Start timing method
     public void startTiming(String comment){
@@ -31,9 +30,12 @@ class Instrumentation {
         //check for activation of instrumentation
         if (isActivated) {
 
-            //Print
+            //formatting
             String prefix = prefix();
-            System.out.println(prefix + "STARTTIMING: " + comment);
+            String line = prefix + "STARTTIMING: " + comment;
+
+            //add to output stream
+            output.add(line);
 
             //Determine start time and push to stack
             long startTime = System.currentTimeMillis();
@@ -57,10 +59,13 @@ class Instrumentation {
             //pop so that next calculated execution time can be for outer wrap
             startTimes.pop();
 
-            //update spacing and print
+            //update spacing and formatting
             spacing = startTimes.size();
             String prefix = prefix();
-            System.out.println(prefix + "STOPTIMING: " + comment + " " + totalTime + "ms");
+            String line = prefix + "STOPTIMING: " + comment + " " + totalTime + "ms";
+
+            //add to output stream
+            output.add(line);
         }
     }
 
@@ -69,18 +74,27 @@ class Instrumentation {
 
         //check for activation of instrumentation
         if (isActivated) {
+
+            //determine correct formatting
             String prefix = prefix();
-            System.out.println(prefix + "COMMENT: " + comment);
+            String line = prefix + "COMMENT: " + comment;
+
+            //add to output stream
+            output.add(line);
         }
     }
 
     //Dump method
-    public static void dump(String filename){
+    public void dump(String filename){
 
         try {
+
+            //print to output stream (i.e. log file) -- change path for each unique machine
             PrintStream log = new PrintStream(new File("/Users/darrienpark/Desktop/" + filename));
             System.setOut(log);
-            log.print("hello java");
+            for (int i = 0; i < output.size(); i++) {
+                log.println(output.get(i));
+            }
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();

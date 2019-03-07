@@ -1,0 +1,15 @@
+STARTTIMING: main
+| STARTTIMING: loop
+| | STARTTIMING: doSomeStuff()
+| | STOPTIMING: doSomeStuff() 1ms
+| | STARTTIMING: doSomeStuff()
+| | STOPTIMING: doSomeStuff() 0ms
+| | STARTTIMING: doSomeStuff()
+| | STOPTIMING: doSomeStuff() 0ms
+| | STARTTIMING: doSomeStuff()
+| | STOPTIMING: doSomeStuff() 0ms
+| | STARTTIMING: doSomeStuff()
+| | STOPTIMING: doSomeStuff() 0ms
+| STOPTIMING: loop 1ms
+| COMMENT: this is an example of a comment!
+STOPTIMING: main 1ms
