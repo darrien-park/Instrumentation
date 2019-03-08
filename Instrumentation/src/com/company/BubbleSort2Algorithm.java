@@ -37,8 +37,13 @@ package com.company;
  */
 class BubbleSort2Algorithm extends SortAlgorithm
 {
+
     void sort(int a[])
     {
+        Instrumentation ins = Instrumentation.Instance();
+        ins.activate(true);
+
+        ins.startTiming("Bubble Sort");
         for (int i = a.length; --i >= 0;)
         {
             boolean flipped = false;
@@ -46,6 +51,8 @@ class BubbleSort2Algorithm extends SortAlgorithm
             {
                 if (stopRequested)
                 {
+                    //stop before return
+                    ins.stopTiming("Bubble Sort");
                     return;
                 }
                 super.compares++;
@@ -63,12 +70,15 @@ class BubbleSort2Algorithm extends SortAlgorithm
             if (!flipped)
             {
                 super.updateAllViews(-1, -1);
+
+                //insert stop before return
+                ins.stopTiming("Bubble Sort");
                 return;
             }
             super.hiMarker = i;
             super.updateAllViews();
         }
-
         super.updateAllViews(-1, -1);
+
     }
 }

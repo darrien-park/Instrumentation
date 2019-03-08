@@ -1,0 +1,20 @@
+STARTTIMING: main
+| STARTTIMING: overhead
+| STOPTIMING: overhead 0ms
+| STARTTIMING: populateArray()
+| STOPTIMING: populateArray() 3ms
+| STARTTIMING: Bubble Sort
+| STOPTIMING: Bubble Sort 273ms
+| STARTTIMING: populateArray()
+| STOPTIMING: populateArray() 0ms
+| STARTTIMING: Quick Sort
+| STOPTIMING: Quick Sort 4ms
+| STARTTIMING: populateArray()
+| STOPTIMING: populateArray() 0ms
+| STARTTIMING: Merge Sort
+| STOPTIMING: Merge Sort 13ms
+| STARTTIMING: populateArray()
+| STOPTIMING: populateArray() 0ms
+| STARTTIMING: Selection Sort
+| STOPTIMING: Selection Sort 189ms
+STOPTIMING: main 487ms

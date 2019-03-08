@@ -33,6 +33,8 @@ package com.company;
  */
 class ExtraStorageMergeSortAlgorithm extends SortAlgorithm
 {
+    Instrumentation ins = Instrumentation.Instance();
+
     void sort(int a[], int lo, int hi, int scratch[])
     {
         super.updateAllViews(lo, hi);
@@ -87,8 +89,11 @@ class ExtraStorageMergeSortAlgorithm extends SortAlgorithm
 
     void sort(int a[])
     {
+        ins.activate(true);
+        ins.startTiming("Merge Sort");
         int scratch[] = new int[a.length];
         sort(a, 0, a.length - 1, scratch);
         super.updateAllViews(-1, -1);
+        ins.stopTiming("Merge Sort");
     }
 }

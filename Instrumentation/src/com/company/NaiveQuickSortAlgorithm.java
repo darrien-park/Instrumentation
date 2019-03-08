@@ -60,6 +60,8 @@ package com.company;
  */
 class NaiveQuickSortAlgorithm extends SortAlgorithm
 {
+    Instrumentation ins = Instrumentation.Instance();
+
     void sort(int a[], int lo0, int hi0)
     {
         int lo = lo0;
@@ -152,7 +154,10 @@ class NaiveQuickSortAlgorithm extends SortAlgorithm
 
     void sort(int a[])
     {
+        ins.activate(true);
+        ins.startTiming("Quick Sort");
         sort(a, 0, a.length - 1);
         super.updateAllViews(-1, -1);
+        ins.stopTiming("Quick Sort");
     }
 }

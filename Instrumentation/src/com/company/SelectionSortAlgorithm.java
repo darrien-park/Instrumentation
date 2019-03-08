@@ -34,8 +34,12 @@ package com.company;
  */
 class SelectionSortAlgorithm extends SortAlgorithm
 {
+    Instrumentation ins = Instrumentation.Instance();
+
     void sort(int a[])
     {
+        ins.activate(true);
+        ins.startTiming("Selection Sort");
         for (int i = 0; i < a.length; i++)
         {
             super.lowMarker = i;
@@ -49,6 +53,7 @@ class SelectionSortAlgorithm extends SortAlgorithm
             {
                 if (stopRequested)
                 {
+                    ins.stopTiming("Selection Sort");
                     return;
                 }
 
@@ -72,5 +77,6 @@ class SelectionSortAlgorithm extends SortAlgorithm
             super.updateAllViews();
         }
         super.updateAllViews(-1, -1);
+        ins.stopTiming("Selection Sort");
     }
 }
